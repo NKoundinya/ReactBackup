@@ -8,7 +8,6 @@ export default function User(props) {
     const [logIn, setLogIn] = useState(true)
 
     function CheckLogin() {
-        console.log(logIn);
         
         fetch('http://localhost:5000/Users/authenticate',
             {
@@ -33,7 +32,7 @@ export default function User(props) {
             .catch(err => {
                 setLogIn(logIn)
             })
-            console.log(logIn);
+        
     }
 
     return (
