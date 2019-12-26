@@ -3,6 +3,7 @@ import { SAuthenProvider } from "./AuthService/SAuthentication";
 import User from "./UserPage/User";
 import { TokenProvider } from "./AuthService/TokenContext";
 import ShowData from "./UserPage/ShowData";
+import { Link, Switch, Route } from "react-router-dom";
 
 function Login() {
 
@@ -21,7 +22,12 @@ function Login() {
         {
           logged ?
             <TokenProvider value={token}>
-              <ShowData />
+              <Link to='\ShowData' component={ShowData}>
+                ShowData
+              </Link>
+              <Switch>
+                <Route path="\ShowData" />
+              </Switch>
             </TokenProvider>
             :
             null

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import TokenContext from '../AuthService/TokenContext';
 import CustomTable from '../CustomTags/CustomTable';
 import TRow from '../CustomTags/TRow';
@@ -21,6 +21,10 @@ function ShowData() {
             .then(res => setData(res))
 
     }
+
+    useEffect(() => {
+        
+    }, [tokenV])
 
     if (data.length !== 0) {
 
