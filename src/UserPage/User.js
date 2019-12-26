@@ -8,7 +8,6 @@ export default function User(props) {
     const [logIn, setLogIn] = useState(true)
 
     function CheckLogin() {
-        
         fetch('http://localhost:5000/Users/authenticate',
             {
                 method: 'POST',
@@ -23,9 +22,13 @@ export default function User(props) {
             .then(res => res.json())
             .then(res => {
                 if (res.token === undefined) {
+                    debugger
                     throw Error('Username Password Invalid')
                 } else {
                     setLogIn(!logIn)
+                    if (logIn === false) {
+                        res.token = undefined;
+                    }
                     props.LogIn(res.token)
                 }
             })
@@ -39,7 +42,7 @@ export default function User(props) {
         <div>
             {logIn ?
                 <div>
-                    <CustomInput type="text" value={username} onValueChange={(e) => setUsername(e.target.value)} />
+                    <CustomInput style={{ 'border': '3px solid black'}} type="text" value={username} onValueChange={(e) => setUsername(e.target.value)} />
                     <CustomInput type="password" value={password} onValueChange={(e) => setPassword(e.target.value)} />
                 </div>
                 : null

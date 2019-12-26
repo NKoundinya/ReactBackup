@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { SAuthenProvider } from "./AuthService/SAuthentication";
 import User from "./UserPage/User";
 import { TokenProvider } from "./AuthService/TokenContext";
@@ -11,13 +11,8 @@ function Login() {
 
   function LogIn(t) {
     setLoggedIn(!logged)
-    console.log(logged)
     setToken(t)
   }
-
-  useEffect(() => {
-    setLoggedIn(false)
-  }, [logged, token])
 
   return (
     <div>

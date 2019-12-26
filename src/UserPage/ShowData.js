@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
 import TokenContext from '../AuthService/TokenContext';
+import CustomTable from '../CustomTags/CustomTable';
+import TRow from '../CustomTags/TRow';
 
 function ShowData() {
 
@@ -7,7 +9,7 @@ function ShowData() {
     const [data, setData] = useState([])
 
     function Show() {
-        console.log(tokenV);
+
         fetch('http://localhost:5000/Users',
             {
                 headers: {
@@ -17,21 +19,29 @@ function ShowData() {
             })
             .then(res => res.json())
             .then(res => setData(res))
+
     }
 
+    if (data.length !== 0) {
+
+        return (
+
+            <div>
+                <CustomTable>
+                    <TRow data={["ID", "FirstName", "LastName", "Username"]} th={true} />
+                    {data.map((element, i) => {
+                        return (
+                            <TRow key={i} data={[element.id, element.firstName, element.lastName, element.username]} />
+                        )
+                    })}
+                </CustomTable>
+            </div>
+
+        )
+    }
     return (
         <div>
             <button onClick={Show} >Show User</button>
-            {data.map((element, i) => {
-                return (
-                    <ul key={i}>
-                        <li>{element.firstName}</li>
-                        <li>{element.firstName}</li>
-                        <li>{element.lastName}</li>
-                        <li>{element.username}</li>
-                    </ul>
-                )
-            })}
         </div>
     )
 }
