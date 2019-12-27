@@ -18,7 +18,6 @@ export default function CustomInput({
             placeholder={placeholder}
             onSubmit={onSubmit}
             onClick={onClick}
-            style={{}}
         />
     )
 }

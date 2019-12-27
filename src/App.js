@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Login from './LogIn';
+import ShowData from './UserPage/ShowData';
 
 function App() {
 

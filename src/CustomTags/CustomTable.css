@@ -4,11 +4,13 @@ table {
 }
 
 thead, th {
+    padding: 8px;
     color: red;
     border: 3px solid springgreen;
 }
 
 tbody, td {
+    padding: 8px;
     color: brown;
     border: 3px solid springgreen;
 }

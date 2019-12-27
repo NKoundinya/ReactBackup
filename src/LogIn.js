@@ -3,14 +3,19 @@ import { SAuthenProvider } from "./AuthService/SAuthentication";
 import User from "./UserPage/User";
 import { TokenProvider } from "./AuthService/TokenContext";
 import ShowData from "./UserPage/ShowData";
-import { Link, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Link,
+  Route,
+} from "react-router-dom";
 
-function Login() {
+function LogIn() {
 
   const [token, setToken] = useState('')
   const [logged, setLoggedIn] = useState(false)
 
-  function LogIn(t) {
+  function LoggingIn(t) {
     setLoggedIn(!logged)
     setToken(t)
   }
@@ -18,17 +23,19 @@ function Login() {
   return (
     <div>
       <SAuthenProvider value={logged}>
-        <User LogIn={LogIn} />
+        <User LoggingIn={LoggingIn} />
         {
           logged ?
-            <TokenProvider value={token}>
-              <Link to='\ShowData' component={ShowData}>
-                ShowData
-              </Link>
-              <Switch>
-                <Route path="\ShowData" />
-              </Switch>
-            </TokenProvider>
+            <Router>
+              <TokenProvider value={token}>
+                <li><Link to='/ShowData' component={ShowData}>ShowData</Link></li>
+                <Switch>
+                  <Route path={'/showData'}>
+                    <ShowData />
+                  </Route>
+                </Switch>
+              </TokenProvider>
+            </Router>
             :
             null
         }
@@ -37,4 +44,4 @@ function Login() {
   )
 }
 
-export default Login;
+export default LogIn;
